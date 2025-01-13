@@ -3,13 +3,14 @@ import mongoose from "mongoose";
 const connectDB = async () => {
 
     try {
-        const conn = await mongoose.connect(process.env.MONGO_URI || "", {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
+        const conn = await mongoose.connect(process.env.MONGO_URI as string || "", {
+            
+            // Ensure the URI is cast as a string
+         dbName: "feedbackly",
         });
         console.log(`MongoDB Connected: ${conn.connection.host}`);
     } catch (error) {
-        console.error(`Error: ${error}`);
+        console.error(`Error connecting to MongoDB: ${error}`);
         process.exit(1);
     }
 };

@@ -31,9 +31,12 @@ const register = async (req: Request, res: Response) => {
             expiresIn: "1h",
         });
 
-        res.status(201).json({message: "Owner registered successfully", token: token});
+     res.status(201).json({message: "Owner registered successfully", token: token});
+     return; // return void - issue with v5 types/express
     } catch (error) {
-        res.status(500).json({message: "Server error", error});
+     res.status(500).json({message: "Server error", error});
+     return;
+
     }
 };
 
